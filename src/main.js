@@ -17,6 +17,7 @@ const form = document.querySelector('.form')
 const button = document.querySelector('#search')
 const gallery = document.querySelector('.gallery')
 const loadBtn = document.querySelector('.load-btn')
+
 export let page;
 let inputValue = '';
 
@@ -24,6 +25,7 @@ let inputValue = '';
 
 console.trace()
 hideLoadBtn()
+
 
 form.addEventListener('submit', handleSubmit)
 
@@ -60,6 +62,7 @@ async function handleSubmit(event) {
             captionDelay: 250,
             captionsData: 'alt',
         }).refresh()
+
         showLoadBtn()
     }
     catch(error) {
@@ -91,7 +94,9 @@ async function handleMore(event) {
         const newImages = await getPictures(inputValue, page)
         const markup = renderElements(newImages);
         gallery.insertAdjacentHTML('beforeend', markup)
+        myScroll()
         hideLoader()
+        
 
         if (newImages.length < perPage){
             iziToast.warning({
@@ -137,3 +142,13 @@ function hideLoadBtn(){
 function showLoadBtn(){
     loadBtn.style.display = 'flex';
 }
+
+function myScroll() {
+    const card = document.querySelector('.gallery-item')
+    const cardParams = card.getBoundingClientRect().height;     
+    window.scrollBy({
+        top: cardParams * 2,
+        behavior: 'smooth'
+    })
+}
+
