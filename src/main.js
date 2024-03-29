@@ -58,10 +58,7 @@ async function handleSubmit(event) {
         const markup = renderElements(images);
         gallery.innerHTML = markup;
 
-        let gallerySlider = new SimpleLightbox('.gallery a', {
-            captionDelay: 250,
-            captionsData: 'alt',
-        }).refresh()
+        initializeSlider()
 
         showLoadBtn()
     }
@@ -94,6 +91,7 @@ async function handleMore(event) {
         const newImages = await getPictures(inputValue, page)
         const markup = renderElements(newImages);
         gallery.insertAdjacentHTML('beforeend', markup)
+        initializeSlider()
         myScroll()
         hideLoader()
         
@@ -150,5 +148,12 @@ function myScroll() {
         top: cardParams * 2,
         behavior: 'smooth'
     })
+}
+
+function initializeSlider(){
+    let gallerySlider = new SimpleLightbox('.gallery a', {
+        captionDelay: 250,
+        captionsData: 'alt',
+    }).refresh()
 }
 
