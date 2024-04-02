@@ -18,12 +18,10 @@ const button = document.querySelector('#search')
 const gallery = document.querySelector('.gallery')
 const loadBtn = document.querySelector('.load-btn')
 
-export let page;
+export let page = 1;
 let inputValue = '';
 
 
-
-console.trace()
 hideLoadBtn()
 
 
@@ -33,7 +31,7 @@ async function handleSubmit(event) {
     event.preventDefault();
     inputValue = event.currentTarget.elements.input.value.trim();
     gallery.innerHTML = '';
-    page = 1;
+    page;
     if(!inputValue){
     
         iziToast.warning({

@@ -61,8 +61,7 @@ height: 40px;
 
 .gallery {
   padding-top: 50px;
-  padding-left: 350px;
-  padding-right: 350px;
+  margin: 0 150px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
